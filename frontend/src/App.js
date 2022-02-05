@@ -1,15 +1,59 @@
 import "./App.css";
+import { useEffect, useState } from "react";
 import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
+import Footer, { PAGES } from "./components/footer/Footer";
 import Home from "./components/home/Home";
 import Menu from "./components/menu/Menu";
 import Settings from "./components/settings/Settings";
 import "bootstrap/dist/css/bootstrap.css";
+import axios from "axios";
 
 const App = () => {
+  //ask jerry about why its called tag!
+  const [user, setUser] = useState({
+    totalSpent: 150,
+    monthlyLimit: 800,
+    weeklyLimit: 300,
+    totalProducts: 3,
+    purchases: [
+      {
+        dateTime: new Date("August 19, 2001 23:15:30").toISOString(),
+        product: "Tennis Racket",
+        price: 69,
+        tags: ["Sports"],
+      },
+      {
+        dateTime: new Date("January 20, 2001 23:15:30").toISOString(),
+        product: "Martial arts equipment",
+        price: 60,
+        tags: ["Sports"],
+      },
+      {
+        dateTime: new Date("Feb 15, 2001 23:15:30").toISOString(),
+        product: "Rocket League",
+        price: 10,
+        tags: ["Games"],
+      },
+    ],
+    avoidanceList: [
+      {
+        tag: "Technology",
+      },
+      {
+        tag: "Cosmetics",
+      },
+    ],
+  });
+
+  const [page, setPage] = useState(PAGES.home);
+
   return (
     <div className="container">
-      <Header />
+      <div>Page number = {page}</div>
+      <br />
+      <div className="row d-flex justify-content-center">
+        <Header />
+      </div>
       <div className="row">
         <div className="col-3">
           <Home />
@@ -18,13 +62,11 @@ const App = () => {
           <Menu />
         </div>
         <div className="col-3">
-          <Menu />
-        </div>
-        <div className="col-3">
-          <Settings />
+          <Settings user={user} setUser={setUser} />
         </div>
       </div>
-      <Footer />
+      <br />
+      <Footer page={page} setPage={setPage} />
     </div>
   );
 };
