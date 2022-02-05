@@ -23,10 +23,10 @@ const Settings = ({ user, setUser }) => {
                 width: "max-content",
                 height: "30px",
                 margin: "2px",
-                color: "grey"
+                color: "grey",
               }}
             >
-              {tag.tag}
+              {tag}
             </div>
           ))}
         </div>
