@@ -9,7 +9,6 @@ import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
 
 const App = () => {
-  //ask jerry about why its called tag!
   const [user, setUser] = useState({
     totalSpent: 150,
     monthlyLimit: 800,
@@ -20,29 +19,22 @@ const App = () => {
         dateTime: new Date("August 19, 2001 23:15:30").toISOString(),
         product: "Tennis Racket",
         price: 69,
-        tags: ["Sports"],
+        category: "Sports",
       },
       {
         dateTime: new Date("January 20, 2001 23:15:30").toISOString(),
         product: "Martial arts equipment",
         price: 60,
-        tags: ["Sports"],
+        category: "Sports",
       },
       {
         dateTime: new Date("Feb 15, 2001 23:15:30").toISOString(),
         product: "Rocket League",
         price: 10,
-        tags: ["Games"],
+        category: "Games",
       },
     ],
-    avoidanceList: [
-      {
-        tag: "Technology",
-      },
-      {
-        tag: "Cosmetics",
-      },
-    ],
+    avoidanceList: ["Technology", "Cosmetics"],
   });
 
   const [page, setPage] = useState(PAGES.home);
