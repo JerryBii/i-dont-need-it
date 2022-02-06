@@ -177,7 +177,7 @@ const Product = ({
             ${product.price}
           </h1>
           <div className="text-center text-white defaultText">
-            that money could be put into your savings for a house!
+            that money could be put into your savings for tuition!
           </div>
           <hr style={{ borderTop: "2px solid white" }} />
           <RenderSmallBusinesses />

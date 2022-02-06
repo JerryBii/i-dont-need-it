@@ -68,7 +68,7 @@ const App = () => {
   }, [product, user]);
 
   return (
-    <div className="container" style={{ background: "#404040" }}>
+    <div className="container background-app" style={{ background: "#404040" }}>
       <div className="row d-flex justify-content-center">
         <Header page={page} setPage={setPage} />
       </div>

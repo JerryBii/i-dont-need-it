@@ -9,7 +9,10 @@ const Settings = ({ user, setUser }) => {
   const [category, setCategory] = useState(null);
 
   return (
-    <div className="container background-home">
+    <div
+      className="container background-settings"
+      style={{ background: "#404040 !important" }}
+    >
       <h2 className="text-light pt-2">Settings</h2>
       <hr style={{ color: "white", borderColor: "white" }} />
       <SliderLimit

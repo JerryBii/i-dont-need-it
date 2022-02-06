@@ -24,7 +24,7 @@ const Header = ({ page, setPage }) => {
             display: "inline-block",
             cursor: "pointer",
             float: "right",
-            marginTop: "2%",
+            marginTop: "1%",
           }}
           color={"white"}
           size={ICON_SIZE}
@@ -39,7 +39,7 @@ const Header = ({ page, setPage }) => {
             display: "inline-block",
             cursor: "pointer",
             float: "right",
-            marginTop: "2%",
+            marginTop: "1%",
           }}
           color={"white"}
           size={ICON_SIZE}
