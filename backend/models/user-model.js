@@ -3,24 +3,26 @@ const Schema = mongoose.Schema;
 
 const User = new Schema(
   {
-    totalSpent: { type: Number, required: true },
-    monthLimit: { type: Number, required: true },
-    weekLimit: { type: Number, required: true },
+    weeklySpent: { type: Number, required: true },
+    monthlySpent: { type: Number, required: true },
+    monthlyLimit: { type: Number, required: true },
+    weeklyLimit: { type: Number, required: true },
     totalProducts: { type: Number, required: true },
+    weeklyItemsNotPurchased: { type: Number, required: true },
+    monthlyItemsNotPurchased: { type: Number, required: true },
+    weeklySaved: { type: Number, required: true },
+    monthlySaved: { type: Number, required: true },
     purchases: [
       {
         _id: false,
         dateTime: { type: Date },
         product: { type: String },
         price: { type: Number },
-        tag: { type: String },
+        category: { type: String },
+        store: { type: String },
       },
     ],
-    blacklist: [
-      {
-        tag: { type: String },
-      },
-    ],
+    avoidanceList: [{ type: String }],
   },
   { timestamps: true }
 );

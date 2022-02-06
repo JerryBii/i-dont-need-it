@@ -59,10 +59,10 @@ const App = () => {
         function: () => {
           const imageSrc =
             document.getElementById("imgTagWrapperId").children[0].src;
+          const temp = document.getElementById("corePrice_feature_div")
+            .children[0].children;
           const price = parseInt(
-            document
-              .getElementById("corePrice_feature_div")
-              .children[0].children[0].children[0].innerText.substring(1)
+            temp[temp.length - 1].children[0].innerText.substring(1)
           );
           const rating = parseFloat(
             document.getElementById("acrPopover").title.split(" ")[0]
