@@ -1,27 +1,29 @@
 import { useState } from "react";
-import "rc-slider/assets/index.css";
 import Slider from "rc-slider";
+import "./Settings.css";
+import "rc-slider/assets/index.css";
+import apis from "../../api";
 
-const SliderLimit = ({ title, defaultValue }) => {
+const SliderLimit = ({ title, defaultValue, callback, maxValue }) => {
   const [value, setValue] = useState(defaultValue);
 
   return (
     <>
       <div className="container p-2">
         <div className="row justify-content-between">
-          <h6 className="col-8 text-secondary">{title}</h6>
-          <div className="col-4 border text-align-right text-secondary">
+          <h6 className="col-8 text-white header-limit">{title}</h6>
+          <div className="col-4 text-align-right text-white header-limit">
             ${value}.00
           </div>
         </div>
       </div>
       <Slider
         min={0}
-        max={3000}
+        max={maxValue}
         step={1}
         defaultValue={value}
         onChange={setValue}
-        /*onAfterChange={}   ADD API CALL HERE   */
+        onAfterChange={callback}
         handleStyle={{
           background: "white",
           borderColor: "grey",
@@ -30,7 +32,7 @@ const SliderLimit = ({ title, defaultValue }) => {
           marginTop: -8,
         }}
         trackStyle={{
-          backgroundColor: "purple",
+          backgroundColor: "green",
         }}
         railStyle={{
           height: 2,

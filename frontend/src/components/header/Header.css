@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Serif');
+
+.header {
+    font-family: 'PT Serif' !important;
+    display: inline-block !important
+}
+
+.background {
+    background-color: #717070 !important;
+    position: absolute;
+}
