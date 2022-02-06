@@ -1,21 +1,18 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import Header from "./components/header/Header";
-import Footer, { PAGES } from "./components/footer/Footer";
+import Header, { PAGES } from "./components/header/Header";
 import Home from "./components/home/Home";
-import Menu from "./components/menu/Menu";
 import Settings from "./components/settings/Settings";
+import Product from "./components/product/Product";
 import "bootstrap/dist/css/bootstrap.css";
-import axios from "axios";
+import apis from "./api";
 
 const App = () => {
   const [user, setUser] = useState({
-    //shows user how much they've spent and how much more they can spend
-    weeklySpent: 150,
-    monthlySpent: 300,
-    weeklyLimit: 300,
-    monthlyLimit: 800,
-    //user's progress: how much they've been saving!
+    weeklySpent: 300.0,
+    weeklyLimit: 350.0,
+    monthlySpent: 0.0,
+    monthlyLimit: 800.0,
     weeklyItemsNotPurchased: 0,
     monthlyItemsNotPurchased: 4,
     weeklySaved: 100,
@@ -40,61 +37,94 @@ const App = () => {
         store: "Amazon",
       },
     ],
-    avoidanceList: ["Technology", "Cosmetics"],
+    avoidanceList: ["Technology", "Toys"],
   });
 
   const [page, setPage] = useState(PAGES.home);
 
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState({
+    title: "BBQ set",
+    imageSrc: "https://m.media-amazon.com/images/I/61yVJOyntwL._AC_SL1200_.jpg",
+    price: 200.99,
+    rating: 4.5,
+    category: "Toys",
+  });
 
   /* eslint-disable no-undef */
   useEffect(() => {
-    chrome.runtime.onMessage.addListener((product) => {
-      setProduct(product);
-    });
+    (async () => {
+      const response = await apis.getUser();
+      console.log(response.data.data);
+      setUser(response.data.data);
+    })();
 
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.scripting.executeScript({
-        target: { tabId: tabs[0].id },
-        function: () => {
-          const imageSrc =
-            document.getElementById("imgTagWrapperId").children[0].src;
-          const temp = document.getElementById("corePrice_feature_div")
-            .children[0].children;
-          const price = parseInt(
-            temp[temp.length - 1].children[0].innerText.substring(1)
-          );
-          const rating = parseFloat(
-            document.getElementById("acrPopover").title.split(" ")[0]
-          );
-          chrome.runtime.sendMessage({ imageSrc, price, rating });
-        },
-      });
-    });
-  });
+    // chrome.runtime.onMessage.addListener((product) => {
+    //   setProduct(product);
+    // });
+    // chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    //   if (tabs[0].url.includes("/dp/")) {
+    //     chrome.scripting.executeScript({
+    //       target: { tabId: tabs[0].id },
+    //       function: () => {
+    //         const imageSrc =
+    //           document.getElementById("imgTagWrapperId").children[0].src;
+    //         const temp = document.getElementById("corePrice_feature_div")
+    //           .children[0].children;
+    //         const price = parseInt(
+    //           temp[temp.length - 1].children[0].innerText.substring(1)
+    //         );
+    //         const rating = parseFloat(
+    //           document.getElementById("acrPopover").title.split(" ")[0]
+    //         );
+    //         const title = document.getElementById("productTitle").innerText;
+    //         const category = document.getElementById("nav-subnav").children[0].innerText
+    //         chrome.runtime.sendMessage({ title, imageSrc, price, rating, category });
+    //       },
+    //     });
+    //   }
+    // });
+  }, []);
   /* eslint-enable no-undef */
+
+  useEffect(() => {
+    if (product !== null) {
+      setPage(PAGES.product);
+    }
+  }, [product]);
 
   return (
     <div className="container">
-      <div>Page number = {page}</div>
-      <div>Product details = {JSON.stringify(product)}</div>
-      <br />
       <div className="row d-flex justify-content-center">
-        <Header />
+        <Header page={page} setPage={setPage} />
       </div>
       <div className="row">
-        {/* <div className="col-3">
-          <Home user={user} />
-        </div>
-        <div className="col-3">
-          <Menu />
-        </div> */}
-        {/* <div className="col-3"> */}
-        <Settings user={user} setUser={setUser} />
-        {/* </div> */}
+        {page === PAGES.home && (
+          <Home
+            weeklySpent={user.weeklySpent}
+            weeklyLimit={user.weeklyLimit}
+            monthlySpent={user.monthlySpent}
+            monthlyLimit={user.monthlyLimit}
+            weeklySaved={user.weeklySaved}
+            monthlySaved={user.monthlySaved}
+          />
+        )}
+        {page === PAGES.product && (
+          <Product
+            product={product}
+            weeklySpent={user.weeklySpent}
+            weeklyLimit={user.weeklyLimit}
+            monthlySpent={user.monthlySpent}
+            monthlyLimit={user.monthlyLimit}
+            avoidanceList={user.avoidanceList}
+            weeklySaved={user.weeklySaved}
+            monthlySaved={user.monthlySaved}
+            weeklyItemsNotPurchased={user.weeklyItemsNotPurchased}
+            monthlyItemsNotPurchased={user.monthlyItemsNotPurchased}
+          />
+        )}
+        {page === PAGES.settings && <Settings user={user} setUser={setUser} />}
       </div>
       <br />
-      <Footer page={page} setPage={setPage} />
     </div>
   );
 };

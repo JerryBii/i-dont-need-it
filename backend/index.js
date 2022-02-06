@@ -6,7 +6,7 @@ const axios = require("axios");
 const userRouter = require("./routes/user-routes");
 
 const app = express();
-const port = 3000;
+const port = 9000;
 
 // set up the request parameters
 const params = {
@@ -15,7 +15,15 @@ const params = {
   url: "https://www.amazon.com/s/zgbs/pc/516866",
 };
 
+var corsOptions = {
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+};
+
 app.use(express.urlencoded({ extended: true }));
+app.use(cors(corsOptions));
 app.use(express.json());
 
 db.on("error", console.error.bind(console, "MongoDB connection error:"));

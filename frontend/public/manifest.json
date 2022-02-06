@@ -3,6 +3,12 @@
   "name": "I don't need it",
   "version": "1.0.0",
   "manifest_version": 3,
+  "commands": {
+    "_execute_action": {
+      "suggested_key": "Ctrl+Shift+Q",
+      "description": "Activate Extension"
+    }
+  },
   "action": {
     "default_popup": "index.html",
     "default_title": "Open the popup"
@@ -12,18 +18,5 @@
     "48": "logo192.png",
     "128": "logo192.png"
   },
-  "permissions": [
-    "storage",
-    "tabs",
-    "activeTab",
-    "scripting",
-    "http://*/*",
-    "https://*/*"
-  ],
-  "content_scripts": [
-    {
-      "matches": ["https://*.amazon.ca/*dp/*"],
-      "js": ["contentScript.js"]
-    }
-  ]
+  "permissions": ["storage", "tabs", "activeTab", "scripting"]
 }

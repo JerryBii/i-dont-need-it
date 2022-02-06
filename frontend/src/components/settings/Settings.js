@@ -1,11 +1,11 @@
 import SliderLimit from "./SliderLimit";
+import "./Settings.css";
 
 const Settings = ({ user, setUser }) => {
   return (
-    <>
-      <h3 className="text-secondary">Settings</h3>
-      <hr />
-
+    <div className="container background-home">
+      <h2 className="header text-light">Settings</h2>
+      <hr style={{ color: "white", borderColor: "white" }} />
       <SliderLimit title="Weekly Limit" defaultValue={user.weeklyLimit} />
       <br />
       <SliderLimit title="Monthly Limit" defaultValue={user.monthlyLimit} />
@@ -31,7 +31,7 @@ const Settings = ({ user, setUser }) => {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

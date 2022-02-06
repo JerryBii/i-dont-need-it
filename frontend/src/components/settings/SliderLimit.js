@@ -1,6 +1,7 @@
 import { useState } from "react";
-import "rc-slider/assets/index.css";
 import Slider from "rc-slider";
+import "./Settings.css";
+import "rc-slider/assets/index.css";
 
 const SliderLimit = ({ title, defaultValue }) => {
   const [value, setValue] = useState(defaultValue);
@@ -30,7 +31,7 @@ const SliderLimit = ({ title, defaultValue }) => {
           marginTop: -8,
         }}
         trackStyle={{
-          backgroundColor: "purple",
+          backgroundColor: "red",
         }}
         railStyle={{
           height: 2,
