@@ -5,23 +5,30 @@ const api = axios.create({
   baseURL: url,
 });
 
-export const createUser = () => api.create(`/user/create`);
+export const createUser = (data) => api.create(`/user/create`, data);
 export const getUser = () => api.get(`/user/get`);
-export const updateWeeklySpent = () => api.patch(`/user/update/weeklyspent`);
-export const updateMonthlySpent = () => api.patch(`/user/update/monthlyspent`);
-export const updateMonthlyLimit = () => api.patch(`/user/update/monthlylimit`);
-export const updateWeeklyLimit = () => api.patch(`/user/update/weeklylimit`);
-export const updateTotalProducts = () =>
-  api.patch(`/user/update/totalproducts`);
-export const updateWeeklyItemsNotPurchased = () =>
-  api.patch(`/user/update/weeklyitemsnotpurchased`);
-export const updateMonthlyItemsNotPurchased = () =>
-  api.patch(`/user/update/monthlyitemsnotpurchased`);
-export const updateMonthlySaved = () => api.patch(`/user/update/monthlySaved`);
-export const updateWeeklySaved = () => api.patch(`/user/update/weeklySaved`);
-export const updatePurchases = () => api.patch(`/user/update/purchases`);
-export const updateAvoidanceList = () =>
-  api.patch(`/user/update/avoidancelist`);
+export const updateWeeklySpent = (data) =>
+  api.patch(`/user/update/weeklyspent`, data);
+export const updateMonthlySpent = (data) =>
+  api.patch(`/user/update/monthlyspent`, data);
+export const updateMonthlyLimit = (data) =>
+  api.patch(`/user/update/monthlylimit`, data);
+export const updateWeeklyLimit = (data) =>
+  api.patch(`/user/update/weeklylimit`, data);
+export const updateTotalProducts = (data) =>
+  api.patch(`/user/update/totalproducts`, data);
+export const updateWeeklyItemsNotPurchased = (data) =>
+  api.patch(`/user/update/weeklyitemsnotpurchased`, data);
+export const updateMonthlyItemsNotPurchased = (data) =>
+  api.patch(`/user/update/monthlyitemsnotpurchased`, data);
+export const updateMonthlySaved = (data) =>
+  api.patch(`/user/update/monthlySaved`, data);
+export const updateWeeklySaved = (data) =>
+  api.patch(`/user/update/weeklySaved`, data);
+export const updatePurchases = (data) =>
+  api.patch(`/user/update/purchases`, data);
+export const updateAvoidanceList = (data) =>
+  api.patch(`/user/update/avoidancelist`, data);
 export const deleteUser = () => api.delete(`/user/delete`);
 
 const apis = {

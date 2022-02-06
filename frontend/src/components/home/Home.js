@@ -64,6 +64,7 @@ const Home = ({
       <div>
         <SavedMoney monthlySaved={monthlySaved} weeklySaved={weeklySaved} />
       </div>
+      <hr style={{ color: "white", borderColor: "white" }} />
     </div>
   );
 };

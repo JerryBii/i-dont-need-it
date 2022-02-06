@@ -61,6 +61,7 @@ const App = () => {
     // chrome.runtime.onMessage.addListener((product) => {
     //   setProduct(product);
     // });
+    //
     // chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     //   if (tabs[0].url.includes("/dp/")) {
     //     chrome.scripting.executeScript({
@@ -93,7 +94,10 @@ const App = () => {
   }, [product]);
 
   return (
-    <div className="container">
+    <div
+      className="container"
+      style={{ overflowY: "scroll", background: "#404040" }}
+    >
       <div className="row d-flex justify-content-center">
         <Header page={page} setPage={setPage} />
       </div>

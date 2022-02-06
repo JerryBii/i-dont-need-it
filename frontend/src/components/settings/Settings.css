@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Courier');
+
+.background-home {
+    background-color:#404040 !important;
+} 
+
+.header-limit {
+    font-family: 'Courier' !important;
+    font-size: large;
+}
+
+.header-graph{
+    font-family: 'Courier' !important;
+    font-size: large;
+    text-align: center;
+}
