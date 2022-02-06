@@ -4,7 +4,7 @@ import "./Settings.css";
 import "rc-slider/assets/index.css";
 import apis from "../../api";
 
-const SliderLimit = ({ title, defaultValue, callback }) => {
+const SliderLimit = ({ title, defaultValue, callback, maxValue }) => {
   const [value, setValue] = useState(defaultValue);
 
   return (
@@ -19,7 +19,7 @@ const SliderLimit = ({ title, defaultValue, callback }) => {
       </div>
       <Slider
         min={0}
-        max={3000}
+        max={maxValue}
         step={1}
         defaultValue={value}
         onChange={setValue}

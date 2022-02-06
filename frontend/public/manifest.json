@@ -18,5 +18,5 @@
     "48": "logo192.png",
     "128": "logo192.png"
   },
-  "permissions": ["storage", "tabs", "activeTab", "scripting"]
+  "permissions": ["storage", "tabs", "activeTab", "scripting", "webRequest"]
 }

@@ -3,7 +3,14 @@ import { GearFill, XLg } from "react-bootstrap-icons";
 import { useState } from "react";
 
 const ICON_SIZE = 30;
-export const PAGES = { home: 0, menu: 1, settings: 2, loading: 3, product: 4 };
+export const PAGES = {
+  home: 0,
+  menu: 1,
+  settings: 2,
+  loading: 3,
+  product: 4,
+  none: 5,
+};
 
 const Header = ({ page, setPage }) => {
   const [prevPage, setPrevPage] = useState(null);

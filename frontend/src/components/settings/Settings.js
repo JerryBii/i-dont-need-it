@@ -19,6 +19,7 @@ const Settings = ({ user, setUser }) => {
           apis.updateWeeklyLimit({ weeklyLimit: value });
           setUser({ ...user, weeklyLimit: value });
         }}
+        maxValue={1000}
       />
       <br />
       <SliderLimit
@@ -28,6 +29,7 @@ const Settings = ({ user, setUser }) => {
           apis.updateMonthlyLimit({ monthlyLimit: value });
           setUser({ ...user, monthlyLimit: value });
         }}
+        maxValue={3000}
       />
       <br />
 

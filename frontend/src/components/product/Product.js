@@ -35,7 +35,7 @@ const RenderSmallBusinesses = () => (
       className="text-white text-center defaultText pb-2"
       style={{ fontWeight: "bold" }}
     >
-      we noticed you are shopping on amazon.ca. Consider purchasing this from
+      we noticed you are shopping on amazon.ca. consider purchasing this from
       local small businesses such as
     </div>
     <div className="container p-2 pb-4">
