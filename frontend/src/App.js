@@ -45,41 +45,39 @@ const App = () => {
 
   const [page, setPage] = useState(PAGES.home);
 
-  const [url, setUrl] = useState("");
-  const [ratings, setRatings] = useState(0);
+  const [product, setProduct] = useState(null);
 
   /* eslint-disable no-undef */
   useEffect(() => {
-    chrome.tabs &&
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        const url = tabs[0].url;
-        setUrl(url);
+    chrome.runtime.onMessage.addListener((product) => {
+      setProduct(product);
+    });
 
-        // chrome.windows.get(tabs[0].windowId, function (window) {
-        //   console.log(wi)
-        //   window.addEventListener(
-        //     "message",
-        //     (event) => {
-        //       // We only accept messages from ourselves
-        //       setRatings(event.data.ratings);
-        //       console.log(event);
-        //       // port.postMessage(event.data.text);
-        //     },
-        //     false
-        //   );
-        // });
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      chrome.scripting.executeScript({
+        target: { tabId: tabs[0].id },
+        function: () => {
+          const imageSrc =
+            document.getElementById("imgTagWrapperId").children[0].src;
+          const price = parseInt(
+            document
+              .getElementById("corePrice_feature_div")
+              .children[0].children[0].children[0].innerText.substring(1)
+          );
+          const rating = parseFloat(
+            document.getElementById("acrPopover").title.split(" ")[0]
+          );
+          chrome.runtime.sendMessage({ imageSrc, price, rating });
+        },
       });
-
-      window.postMessage({ type: "FROM_PAGE", text: "Hello from the webpage!" }, "*");
-
-  }, []);
-  /* eslint-disable no-undef */
+    });
+  });
+  /* eslint-enable no-undef */
 
   return (
     <div className="container">
       <div>Page number = {page}</div>
-      <div>URL = {url}</div>
-      <div>ratings = {ratings}</div>
+      <div>Product details = {JSON.stringify(product)}</div>
       <br />
       <div className="row d-flex justify-content-center">
         <Header />

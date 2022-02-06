@@ -2,8 +2,8 @@
   "short_name": "idni",
   "name": "I don't need it",
   "version": "1.0.0",
-  "manifest_version": 2,
-  "browser_action": {
+  "manifest_version": 3,
+  "action": {
     "default_popup": "index.html",
     "default_title": "Open the popup"
   },
@@ -12,15 +12,5 @@
     "48": "logo192.png",
     "128": "logo192.png"
   },
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
-  "permissions": ["storage", "tabs", "activeTab", "http://*/*", "https://*/*"],
-  "content_scripts": [
-    {
-      "matches": ["https://*.amazon.ca/*"],
-      "js": ["content-script.js"]
-    }
-  ],
-  "externally_connectable": {
-    "matches": ["https://*.amazon.ca/*"]
-  }
+  "permissions": ["storage", "tabs", "activeTab", "scripting", "http://*/*", "https://*/*"]
 }
